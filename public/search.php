@@ -9,7 +9,7 @@ include '../config.php';
 
 // if no search is to be reported
 
-if (!isset($_POST['s'])) {
+if (!isset($_GET['s'])) {
   $error = "No tak bez niczego?";
   include '../views/error.php';
   exit;
@@ -22,7 +22,7 @@ try {
 
   // split the list
 
-  $s = explode(",", $_POST['s']);
+  $s = explode(",", $_GET['s']);
   foreach ($s as &$sval) {
     $sval = trim($sval);
   }
