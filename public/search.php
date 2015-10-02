@@ -24,15 +24,31 @@ try {
     $sval = trim($sval);
   }
   unset($sval);
-  var_dump($s);
 
   // Search for ingredients
 
   $in_stmt = $db->prepare('SELECT ingredient_id, name FROM ingredients_names WHERE name IN ('.implode(',', array_fill(0, count($s), '?')).')');
   $in_stmt->execute($s);
-  $in = $in_stmt->fetchAll(PDO::FETCH_ASSOC);
+  $ins = $in_stmt->fetchAll(PDO::FETCH_ASSOC);
+  $in_ids = [];
+  foreach ($ins as $in) {
+    $in_ids[] = intval($in['ingredient_id']);
+  }
 
-  var_dump($in);
+  // Look for recipes containing at least one of the ingredients;
+  // sort 'em by how many ingredients we don't have are needed to get them done
+
+  $rcp_stmt = $db->prepare(
+     'SELECT recipes.*, recipes.ingredients_count - COUNT(ingredient_id) AS need
+      FROM recipes_ingredients, recipes
+      WHERE recipes_ingredients.ingredient_id IN ('.implode(',', array_fill(0, count($in_ids), '?')).')
+        AND recipes.id = recipes_ingredients.recipe_id
+      GROUP BY recipe_id
+      ORDER BY need');
+  $rcp_stmt->execute($in_ids);
+  $rcps = $rcp_stmt->fetchAll(PDO::FETCH_ASSOC);
+
+  var_dump($ins, $in_ids, $rcps);
 
 } catch (PDOException $e) {
 
