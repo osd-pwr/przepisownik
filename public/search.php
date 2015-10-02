@@ -9,8 +9,11 @@ include '../config.php';
 
 // if no search is to be reported
 
-if (!isset($_POST['s']))
-  die("No tak bez niczego?");
+if (!isset($_POST['s'])) {
+  $error = "No tak bez niczego?";
+  include '../views/error.php';
+  exit;
+}
 
 try {
   // connect to db
