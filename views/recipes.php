@@ -18,8 +18,7 @@
         foreach ($recipes as $recipe) {
           echo '
             <li>
-              <a href="'.$recipe['url'].'">
-                <h4>'.$recipe['name'].'</h4>
+              <a href="'.$recipe['url'].'"><h4>'.$recipe['name'].'</h4>
                 <p>Brakuje '.$recipe['need'].' z '.$recipe['ingredients_count'].'</p>
               </a>
             </li>';

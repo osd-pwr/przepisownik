@@ -3,9 +3,10 @@
  */
 
 * { box-sizing: border-box; }
+a { text-decoration: none; }
 html, body { margin: 0; padding: 0; min-height: 100%; font-family: sans-serif; }
 
-.search {
+body {
   background: #05ad4b; /* Old browsers */
   background: linear-gradient(to bottom, #05ad4b 0%,#05ad4b 33%,#fafafa 33%,#fafafa 100%); /* W3C */
 }
@@ -19,4 +20,24 @@ html, body { margin: 0; padding: 0; min-height: 100%; font-family: sans-serif; }
   width: 800px;
   margin: 100px auto;
   padding: 20px;
+}
+
+.search ul,
+.search ul h4,
+.search ul p {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.search li {
+  padding: 10px 0;
+}
+
+.search ul h4 {
+  color: #112;
+}
+
+.search ul p {
+  color: #336;
 }
