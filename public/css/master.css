@@ -1,0 +1,22 @@
+/**
+ * Master CSS of Przepisownik
+ */
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; min-height: 100%; font-family: sans-serif; }
+
+.search {
+  background: #05ad4b; /* Old browsers */
+  background: linear-gradient(to bottom, #05ad4b 0%,#05ad4b 33%,#fafafa 33%,#fafafa 100%); /* W3C */
+}
+
+.card {
+  background: #fefefe;
+  border: 1px solid #ccc;
+}
+
+.main.card {
+  width: 800px;
+  margin: 100px auto;
+  padding: 20px;
+}
