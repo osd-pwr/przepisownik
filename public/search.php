@@ -29,9 +29,9 @@ try {
 
   $in_stmt = $db->prepare('SELECT ingredient_id, name FROM ingredients_names WHERE name IN ('.implode(',', array_fill(0, count($s), '?')).')');
   $in_stmt->execute($s);
-  $ins = $in_stmt->fetchAll(PDO::FETCH_ASSOC);
+  $ingredients = $in_stmt->fetchAll(PDO::FETCH_ASSOC);
   $in_ids = [];
-  foreach ($ins as $in) {
+  foreach ($ingredients as $in) {
     $in_ids[] = intval($in['ingredient_id']);
   }
 
@@ -47,9 +47,11 @@ try {
       ORDER BY need
       LIMIT 0, 25');
   $rcp_stmt->execute($in_ids);
-  $rcps = $rcp_stmt->fetchAll(PDO::FETCH_ASSOC);
+  $recipes = $rcp_stmt->fetchAll(PDO::FETCH_ASSOC);
 
-  var_dump($ins, $in_ids, $rcps);
+  // see what we've got here!
+
+  include '../views/recipes.php';
 
 } catch (PDOException $e) {
 
