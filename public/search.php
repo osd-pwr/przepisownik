@@ -44,7 +44,8 @@ try {
       WHERE recipes_ingredients.ingredient_id IN ('.implode(',', array_fill(0, count($in_ids), '?')).')
         AND recipes.id = recipes_ingredients.recipe_id
       GROUP BY recipe_id
-      ORDER BY need');
+      ORDER BY need
+      LIMIT 0, 25');
   $rcp_stmt->execute($in_ids);
   $rcps = $rcp_stmt->fetchAll(PDO::FETCH_ASSOC);
 
