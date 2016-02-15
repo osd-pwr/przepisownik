@@ -1,0 +1,6 @@
+<?php
+/**
+ * rename me to config.php after filling in
+ */
+define('DB_USER', '');
+define('DB_PASS', '');
